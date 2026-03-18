@@ -74,10 +74,19 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
     };
 
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    let lastRenderedFrame = -1;
 
     const unsubscribe = frameIndex.on("change", (latest) => {
-      if (isMobile) return; // Do not animate frames on mobile to save performance
-      renderFrame = Math.round(latest);
+      const targetFrame = Math.round(latest);
+      
+      // On mobile, update less frequently to significantly reduce frame lag while still animating
+      if (isMobile && Math.abs(targetFrame - lastRenderedFrame) < 2 && targetFrame !== 0) {
+        return;
+      }
+      
+      renderFrame = targetFrame;
+      lastRenderedFrame = targetFrame;
+      
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       animationFrameId = requestAnimationFrame(render);
     });
