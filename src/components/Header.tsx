@@ -45,9 +45,7 @@ export default function Header() {
           <a href="https://www.linkedin.com/in/anirban-banerjee-7a131224a/" target="_blank" rel="noreferrer" className="text-white/70 hover:text-white transition-colors hidden sm:block">
             <Linkedin size={20} strokeWidth={1.5} />
           </a>
-          <a href="mailto:anirbanbanerjee481@gmail.com" className="px-6 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-neutral-200 transition-colors">
-            Contact
-          </a>
+
         </div>
 
       </header>

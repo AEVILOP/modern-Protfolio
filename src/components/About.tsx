@@ -13,6 +13,7 @@ export default function About() {
               src="/about_profile.png"
               alt="Anirban Banerjee Profile Image"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 blur-[2px] group-hover:blur-none"
             />
             {/* Interactive Design Badge overlay similar to image */}

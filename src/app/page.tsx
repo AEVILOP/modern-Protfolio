@@ -1,16 +1,42 @@
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Overlay from "@/components/Overlay";
-import Projects from "@/components/Projects";
-import About from "@/components/About";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Capabilities from "@/components/Capabilities";
-import ScrollUpButton from "@/components/ScrollUpButton";
 import CustomCursor from "@/components/CustomCursor";
-import SkillsMarquee from "@/components/SkillsMarquee";
-import Education from "@/components/Education";
 import Preloader from "@/components/Preloader";
 import LiveBackground from "@/components/LiveBackground";
+import ScrollUpButton from "@/components/ScrollUpButton";
+
+// Heavy sections — lazy loaded so initial JS bundle stays small
+const Capabilities = dynamic(() => import("@/components/Capabilities"), {
+  loading: () => <div className="h-screen" />,
+  ssr: false,
+});
+const SkillsMarquee = dynamic(() => import("@/components/SkillsMarquee"), {
+  loading: () => <div className="h-64" />,
+  ssr: false,
+});
+const Projects = dynamic(() => import("@/components/Projects"), {
+  loading: () => <div className="h-screen" />,
+  ssr: false,
+});
+const About = dynamic(() => import("@/components/About"), {
+  loading: () => <div className="h-screen" />,
+  ssr: false,
+});
+const Education = dynamic(() => import("@/components/Education"), {
+  loading: () => <div className="h-64" />,
+  ssr: false,
+});
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => <div className="h-screen" />,
+  ssr: false,
+});
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div className="h-32" />,
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -33,22 +59,39 @@ export default function Home() {
       </ScrollyCanvas>
 
       {/* Core Capabilities Section */}
-      <Capabilities />
+      <Suspense fallback={<div className="h-screen" />}>
+        <Capabilities />
+      </Suspense>
 
       {/* Infinite Looping Skills Marquee */}
-      <SkillsMarquee />
+      <Suspense fallback={<div className="h-64" />}>
+        <SkillsMarquee />
+      </Suspense>
 
       {/* Projects grid placed after the scrolling animation finishes */}
-      <Projects />
+      <Suspense fallback={<div className="h-screen" />}>
+        <Projects />
+      </Suspense>
 
       {/* About Section */}
-      <About />
+      <Suspense fallback={<div className="h-screen" />}>
+        <About />
+      </Suspense>
 
       {/* Education Timeline Data */}
-      <Education />
+      <Suspense fallback={<div className="h-64" />}>
+        <Education />
+      </Suspense>
+
+      {/* Contact Section */}
+      <Suspense fallback={<div className="h-screen" />}>
+        <Contact />
+      </Suspense>
 
       {/* Footer & Contact */}
-      <Footer />
+      <Suspense fallback={<div className="h-32" />}>
+        <Footer />
+      </Suspense>
 
       {/* Floating Action Button */}
       <ScrollUpButton />

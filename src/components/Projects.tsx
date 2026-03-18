@@ -61,6 +61,7 @@ export default function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transform group-hover:scale-105 group-hover:blur-[2px] transition-all duration-700 ease-[cubic-bezier(0.33,1,0.68,1)]"
                 />
                 
