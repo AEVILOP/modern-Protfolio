@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 export default function Overlay() {
   const { scrollYProgress } = useScroll();
@@ -52,6 +53,20 @@ export default function Overlay() {
           <h2 className="text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow-2xl">
             Improving through consistent execution.
           </h2>
+        </motion.div>
+
+        {/* Scroll Down Indicator */}
+        <motion.div
+           style={{ opacity: opacity1 }}
+           className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center pointer-events-auto cursor-pointer group"
+           onClick={() => window.scrollBy({ top: window.innerHeight * 1.2, behavior: 'smooth' })}
+        >
+          <p className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Scroll
+          </p>
+          <div className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-md group-hover:bg-white/10 transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+            <ChevronDown size={20} className="text-white/60 group-hover:text-white transition-colors animate-bounce" />
+          </div>
         </motion.div>
 
       </div>

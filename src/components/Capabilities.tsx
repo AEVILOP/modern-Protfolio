@@ -25,7 +25,7 @@ export default function Capabilities() {
   ];
 
   return (
-    <section className="relative z-20 bg-[#0a0a0a] py-32 px-6 md:px-12 border-t border-white/5">
+    <section className="relative z-20 bg-[#0a0a0a] py-32 px-6 md:px-12">
       <div className="max-w-5xl mx-auto flex flex-col items-center">
         
         {/* Header content */}

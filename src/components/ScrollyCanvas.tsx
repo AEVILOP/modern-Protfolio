@@ -131,6 +131,9 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
           style={{ opacity: canvasOpacity }}
           className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_50%,rgba(0,0,0,0.9)_100%)] pointer-events-none" 
         />
+        
+        {/* Smooth Blend Gradient mapped to the next section's color */}
+        <div className="absolute bottom-0 inset-x-0 h-32 md:h-64 bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none z-10" />
       </div>
       {children}
     </div>
