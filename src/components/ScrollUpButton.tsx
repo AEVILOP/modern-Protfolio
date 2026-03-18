@@ -10,7 +10,8 @@ export default function ScrollUpButton() {
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
-      setIsVisible(latest > 800);
+      const threshold = typeof window !== "undefined" ? window.innerHeight * 4 : 4000;
+      setIsVisible(latest > threshold);
     });
   }, [scrollY]);
 

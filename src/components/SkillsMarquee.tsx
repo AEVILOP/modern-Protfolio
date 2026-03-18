@@ -16,7 +16,7 @@ export default function SkillsMarquee() {
   ];
 
   return (
-    <section className="relative z-20 bg-[#0a0f12] py-24 overflow-hidden border-t border-white/5">
+    <section className="relative z-20 bg-[#121212] py-24 overflow-hidden border-t border-white/5">
       <div className="flex flex-col items-center mb-16">
         <p className="text-xs font-bold tracking-[0.2em] text-[#ededed]/50 uppercase mb-2">
           Technologies &amp; Tools

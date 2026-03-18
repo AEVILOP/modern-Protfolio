@@ -23,9 +23,27 @@ export default function Header() {
 
         {/* Center: Navigation Links */}
         <nav className="hidden lg:flex justify-center gap-10 items-center text-sm font-medium tracking-wide text-white/70 w-1/3">
-          <a href="#work" className="hover:text-white transition-colors">Work</a>
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          <a 
+            href="#work" 
+            onClick={(e) => { e.preventDefault(); document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            Work
+          </a>
+          <a 
+            href="#about" 
+            onClick={(e) => { e.preventDefault(); document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            About
+          </a>
+          <a 
+            href="#contact" 
+            onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            Contact
+          </a>
         </nav>
 
         {/* Right Side: Resume Button & Socials */}

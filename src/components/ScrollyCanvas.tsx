@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, ReactNode } from "react";
-import { useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const FRAME_COUNT = 192;
 
@@ -20,6 +20,9 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
   
   // Transform scroll progress (0 to 1) to frame index (0 to 191)
   const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
+  
+  // Fade out canvas at the end of the 500vh scroll
+  const canvasOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
 
   useEffect(() => {
     // Preload images
@@ -70,7 +73,10 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
       }
     };
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
     const unsubscribe = frameIndex.on("change", (latest) => {
+      if (isMobile) return; // Do not animate frames on mobile to save performance
       renderFrame = Math.round(latest);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       animationFrameId = requestAnimationFrame(render);
@@ -105,13 +111,17 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
 
   return (
     <div ref={containerRef} className="relative h-[500vh] bg-[#121212]">
-      <div className="sticky top-0 left-0 h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-        <canvas
+      <div className="sticky top-0 left-0 h-screen w-full flex items-center justify-center overflow-hidden bg-[#121212]">
+        <motion.canvas
           ref={canvasRef}
+          style={{ opacity: canvasOpacity }}
           className="w-full h-full object-cover filter contrast-[1.2] brightness-[0.95] saturate-[1.05]"
         />
         {/* Deep cinematic vignette overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_50%,rgba(0,0,0,0.9)_100%)] pointer-events-none" />
+        <motion.div 
+          style={{ opacity: canvasOpacity }}
+          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_50%,rgba(0,0,0,0.9)_100%)] pointer-events-none" 
+        />
       </div>
       {children}
     </div>

@@ -43,7 +43,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-20 bg-[#0a0a0a] py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden"
+      className="relative z-20 bg-[#121212] py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden"
     >
       {/* Ambient background glow */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

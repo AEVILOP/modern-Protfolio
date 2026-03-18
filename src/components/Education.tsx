@@ -2,7 +2,7 @@ import { Calendar, MapPin, Briefcase } from "lucide-react";
 
 export default function Education() {
   return (
-    <section className="relative z-20 bg-[#0c0812] py-24 px-6 md:px-12 border-t border-white/5">
+    <section className="relative z-20 bg-[#0a0a0a] py-24 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-4xl mx-auto flex flex-col items-center">
         
         <p className="text-xs font-bold tracking-[0.2em] text-[#ededed]/50 uppercase mb-2">
