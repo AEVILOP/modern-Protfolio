@@ -49,17 +49,18 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {projects.map((project, idx) => {
-            const isWide = idx === 1 || idx === 2;
-            
             return (
               <div 
                 key={idx}
-                className={`group flex flex-col relative overflow-hidden bg-[#1a1a1a] border border-white/5 rounded-[2rem] p-4 md:p-6 transition-all duration-300 hover:bg-[#1f1f1f] hover:border-white/20 ${isWide ? 'md:col-span-2' : 'md:col-span-1'}`}
+                className="group flex flex-col relative overflow-hidden rounded-[2rem] p-4 md:p-6 transition-all duration-500 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_8px_40px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.1)]"
               >
+                {/* Glassmorphism gradient sheen */}
+                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                
                 {/* Image Container */}
-                <div className="relative w-full h-[250px] md:h-[350px] rounded-[1.5rem] overflow-hidden bg-black/50 border border-white/10 mb-6 p-4 md:p-6 flex items-center justify-center">
+                <div className="relative w-full h-[250px] md:h-[350px] rounded-[1.5rem] overflow-hidden bg-black/30 backdrop-blur-sm border border-white/[0.06] mb-6 p-4 md:p-6 flex items-center justify-center">
                   <Image 
                     src={project.image}
                     alt={project.title}
@@ -69,18 +70,18 @@ export default function Projects() {
                   />
                   
                   {/* Floating Meta Details / Buttons revealed on hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
-                    <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2.5 bg-white text-black rounded-full font-bold text-xs hover:scale-105 transition-transform" title="View Source on GitHub">
+                  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+                    <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white/90 backdrop-blur-md text-black rounded-full font-bold text-xs hover:scale-105 transition-transform shadow-lg" title="View Source on GitHub">
                       <Github size={16} /> GitHub
                     </a>
-                    <a href={project.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2.5 bg-[#111] text-white border border-white/20 rounded-full font-bold text-xs hover:scale-105 transition-transform hover:bg-[#222]" title="View Live Site">
+                    <a href={project.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white/[0.08] backdrop-blur-md text-white border border-white/20 rounded-full font-bold text-xs hover:scale-105 transition-transform hover:bg-white/[0.15] shadow-lg" title="View Live Site">
                       Live <ArrowUpRight size={16} />
                     </a>
                   </div>
                 </div>
 
                 {/* Detail Section Below Image */}
-                <div className="flex justify-between items-start px-2 mt-auto">
+                <div className="relative flex justify-between items-start px-2 mt-auto">
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-1.5">
                       {project.title}

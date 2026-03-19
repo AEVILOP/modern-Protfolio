@@ -26,38 +26,54 @@ export default function Capabilities() {
 
   return (
     <section className="relative z-20 bg-[#0a0a0a] py-32 px-6 md:px-12">
-      <div className="max-w-5xl mx-auto flex flex-col items-center">
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Header content */}
-        <h2 className="text-4xl md:text-5xl font-medium text-white/70 tracking-tight mb-4 text-center">
-          What I <span className="font-bold text-white">Do</span>
-        </h2>
-        
-        <div className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#ededed]/50 uppercase mb-16">
-          Core Capabilities
+        <div className="w-full flex justify-between items-end mb-16 md:mb-24">
+          <div>
+            <p className="text-xs font-bold tracking-[0.2em] text-[#ededed]/50 uppercase mb-2">
+              Core Capabilities
+            </p>
+            <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white/90">
+              What I <span className="font-bold text-white">Do</span>
+            </h2>
+          </div>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-          {capabilities.map((item, idx) => (
-            <div 
-              key={idx}
-              className="group p-8 md:p-10 rounded-3xl bg-[#171717] border border-white/5 hover:border-white/10 transition-all duration-500 ease-out transform hover:-translate-y-4 hover:rotate-x-[10deg] hover:rotate-y-[5deg] hover:shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.8),-20px_-20px_60px_rgba(255,255,255,0.02)] [transform-style:preserve-3d]"
-              style={{ perspective: "1000px" }}
-            >
-              <div className="transform transition-all duration-500 group-hover:translate-z-[40px]">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors duration-300 shadow-inner group-hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                  {item.icon}
+        {/* Bento Grid — alternating small + wide / wide + small */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+          {capabilities.map((item, idx) => {
+            // Row 1: idx 0 = small (1 col), idx 1 = wide (2 cols)
+            // Row 2: idx 2 = wide (2 cols), idx 3 = small (1 col)
+            const isWide = idx === 1 || idx === 2;
+            
+            return (
+              <div 
+                key={idx}
+                className={`group flex flex-col relative overflow-hidden rounded-[2rem] p-6 md:p-8 transition-all duration-500 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_8px_40px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.1)] ${isWide ? 'md:col-span-2' : 'md:col-span-1'}`}
+              >
+                {/* Glassmorphism gradient sheen */}
+                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Icon Container */}
+                <div className={`relative w-full ${isWide ? 'h-[180px] md:h-[200px]' : 'h-[160px] md:h-[200px]'} rounded-[1.5rem] overflow-hidden bg-black/30 backdrop-blur-sm border border-white/[0.06] mb-6 flex items-center justify-center`}>
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.08)]">
+                    <span className="scale-[1.8] md:scale-[2.2]">{item.icon}</span>
+                  </div>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-                  {item.title}
-                </h3>
-                <p className="text-[#ededed]/60 leading-relaxed text-sm md:text-base">
-                  {item.description}
-                </p>
+
+                {/* Detail Section */}
+                <div className="relative flex flex-col px-2 mt-auto">
+                  <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#ededed]/50 leading-relaxed text-sm md:text-base">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         
       </div>

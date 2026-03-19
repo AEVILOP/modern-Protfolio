@@ -22,7 +22,7 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
   const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
   
   // Fade out canvas at the end of the 500vh scroll
-  const canvasOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const canvasOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 
   useEffect(() => {
     // Preload images
@@ -119,8 +119,8 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
   }, [images, frameIndex]);
 
   return (
-    <div ref={containerRef} className="relative h-[500vh] bg-[#121212]">
-      <div className="sticky top-0 left-0 h-screen w-full flex items-center justify-center overflow-hidden bg-[#121212]">
+    <div ref={containerRef} className="relative h-[500vh] bg-[#0a0a0a]">
+      <div className="sticky top-0 left-0 h-screen w-full flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
         <motion.canvas
           ref={canvasRef}
           style={{ opacity: canvasOpacity }}
@@ -132,8 +132,9 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
           className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_50%,rgba(0,0,0,0.9)_100%)] pointer-events-none" 
         />
         
-        {/* Smooth Blend Gradient mapped to the next section's color */}
-        <div className="absolute bottom-0 inset-x-0 h-32 md:h-64 bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none z-10" />
+        {/* Multi-layered smooth blend gradient for cinematic transition */}
+        <div className="absolute bottom-0 inset-x-0 h-48 md:h-80 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent pointer-events-none z-10" />
+        <div className="absolute bottom-0 inset-x-0 h-64 md:h-96 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent pointer-events-none z-10" />
       </div>
       {children}
     </div>
