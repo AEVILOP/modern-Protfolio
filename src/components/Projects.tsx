@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import Image from "next/image";
 
@@ -37,7 +40,13 @@ export default function Projects() {
     <section id="work" className="relative z-20 bg-[#0a0a0a] py-32 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
-        <div className="w-full flex justify-between items-end mb-16 md:mb-24">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="w-full flex justify-between items-end mb-16 md:mb-24"
+        >
           <div>
             <p className="text-xs font-bold tracking-[0.2em] text-[#ededed]/50 uppercase mb-2">
               Selected Work
@@ -46,13 +55,17 @@ export default function Projects() {
               Featured <span className="font-bold text-white">Projects</span>
             </h2>
           </div>
-        </div>
+        </motion.div>
 
         {/* Projects Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {projects.map((project, idx) => {
             return (
-              <div 
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 key={idx}
                 className="group flex flex-col relative overflow-hidden rounded-[2rem] p-4 md:p-6 transition-all duration-500 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_8px_40px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.1)]"
               >
@@ -60,13 +73,23 @@ export default function Projects() {
                 <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-white/[0.02] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Image Container */}
-                <div className="relative w-full h-[250px] md:h-[350px] rounded-[1.5rem] overflow-hidden bg-black/30 backdrop-blur-sm border border-white/[0.06] mb-6 p-4 md:p-6 flex items-center justify-center">
+                <div className="relative w-full h-[250px] md:h-[350px] rounded-[1.5rem] overflow-hidden bg-black/30 border border-white/[0.06] mb-6 flex items-center justify-center p-0">
+                  {/* Blurred Background Image */}
+                  <Image 
+                    src={project.image}
+                    alt={`${project.title} background`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover blur-xl opacity-40 transform scale-110 group-hover:scale-125 transition-all duration-700 ease-[cubic-bezier(0.33,1,0.68,1)]"
+                  />
+                  
+                  {/* Main Image */}
                   <Image 
                     src={project.image}
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain transform group-hover:-translate-y-2 group-hover:scale-105 group-hover:drop-shadow-[0_20px_20px_rgba(255,255,255,0.05)] transition-all duration-700 ease-[cubic-bezier(0.33,1,0.68,1)]"
+                    className="object-contain transform scale-95 group-hover:-translate-y-2 group-hover:scale-100 group-hover:drop-shadow-[0_20px_20px_rgba(255,255,255,0.05)] transition-all duration-700 ease-[cubic-bezier(0.33,1,0.68,1)]"
                   />
                   
                   {/* Floating Meta Details / Buttons revealed on hover */}
@@ -91,7 +114,7 @@ export default function Projects() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

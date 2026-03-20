@@ -19,10 +19,10 @@ export default function ScrollyCanvas({ children }: { children?: ReactNode }) {
   });
   
   // Transform scroll progress (0 to 1) to frame index (0 to 191)
-  const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
+  const frameIndex = useTransform(scrollYProgress, [0, 0.85], [0, FRAME_COUNT - 1]);
   
   // Fade out canvas at the end of the 500vh scroll
-  const canvasOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+  const canvasOpacity = useTransform(scrollYProgress, [0.85, 1], [1, 0]);
 
   useEffect(() => {
     // Preload images

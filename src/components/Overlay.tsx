@@ -6,6 +6,8 @@ import { ChevronDown } from "lucide-react";
 export default function Overlay() {
   const { scrollYProgress } = useScroll();
 
+  const buttonOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+
   // Parallax + fade for Section 1 (0%)
   const opacity1 = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const y1 = useTransform(scrollYProgress, [0, 0.15], [0, -100]);
@@ -15,8 +17,8 @@ export default function Overlay() {
   const y2 = useTransform(scrollYProgress, [0.15, 0.45], [100, -100]);
 
   // Parallax + fade for Section 3 (60%)
-  const opacity3 = useTransform(scrollYProgress, [0.45, 0.5, 0.7, 0.75], [0, 1, 1, 0]);
-  const y3 = useTransform(scrollYProgress, [0.45, 0.75], [100, -100]);
+  const opacity3 = useTransform(scrollYProgress, [0.45, 0.5, 0.75, 0.8], [0, 1, 1, 0]);
+  const y3 = useTransform(scrollYProgress, [0.45, 0.8], [100, -100]);
 
   return (
     <div className="absolute inset-0 z-10 pointer-events-none">
@@ -25,7 +27,7 @@ export default function Overlay() {
         {/* Section 1: Center */}
         <motion.div
           style={{ opacity: opacity1, y: y1 }}
-          className="absolute inset-x-0 flex flex-col items-center justify-center text-center top-[55%] -translate-y-1/2 px-6"
+          className="absolute inset-x-0 flex flex-col items-center justify-center text-center top-[65%] -translate-y-1/2 px-6"
         >
           <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-2xl">
             Anirban Banerjee
@@ -57,7 +59,7 @@ export default function Overlay() {
 
         {/* Scroll Down Indicator */}
         <motion.div
-           style={{ opacity: opacity1 }}
+           style={{ opacity: buttonOpacity }}
            className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center pointer-events-auto cursor-pointer group"
            onClick={() => window.scrollBy({ top: window.innerHeight * 1.2, behavior: 'smooth' })}
         >

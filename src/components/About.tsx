@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function About() {
@@ -8,7 +11,13 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 w-full items-center">
           
           {/* Left: Image Container */}
-          <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden bg-black/50 border border-white/10 group">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden bg-black/50 border border-white/10 group"
+          >
             <Image 
               src="/about_profile.png"
               alt="Anirban Banerjee Profile Image"
@@ -20,10 +29,16 @@ export default function About() {
             <div className="absolute bottom-8 right-8 w-24 h-24 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center -rotate-90 text-[10px] font-bold tracking-[0.2em] text-white/50 group-hover:text-white transition-colors duration-500">
               DEVELOPER
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: Text Content */}
-          <div className="flex flex-col">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col"
+          >
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white/90 mb-10">
               About <span className="font-bold text-white">Me</span>
             </h2>
@@ -59,7 +74,7 @@ export default function About() {
               </div>
             </div>
 
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

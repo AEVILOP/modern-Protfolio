@@ -1,26 +1,29 @@
-import { Layers, Link2, Database, Bot } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { LayoutTemplate, Code2, DatabaseZap, Sparkles } from "lucide-react";
 
 export default function Capabilities() {
   const capabilities = [
     {
       title: "Frontend Architecture",
       description: "Designing scalable, maintainable, and high-performance frontend systems for enterprise applications using React, Next.js, and TypeScript.",
-      icon: <Layers size={24} className="text-indigo-400" />,
+      icon: <LayoutTemplate size={24} className="text-indigo-400" />,
     },
     {
       title: "Full-Stack Development",
       description: "Building seamless end-to-end applications with robust Node.js backend services and modern interactive user interfaces.",
-      icon: <Link2 size={24} className="text-emerald-400" />,
+      icon: <Code2 size={24} className="text-emerald-400" />,
     },
     {
       title: "API & Authentication",
       description: "Developing secure, highly-optimized RESTful APIs and implementing complex authentication and authorization flows.",
-      icon: <Database size={24} className="text-amber-400" />,
+      icon: <DatabaseZap size={24} className="text-amber-400" />,
     },
     {
       title: "AI Integrations",
       description: "Integrating advanced LLMs and AI capabilities seamlessly into web applications to deliver next-generation user experiences.",
-      icon: <Bot size={24} className="text-rose-400" />,
+      icon: <Sparkles size={24} className="text-rose-400" />,
     },
   ];
 
@@ -29,7 +32,13 @@ export default function Capabilities() {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Header content */}
-        <div className="w-full flex justify-between items-end mb-16 md:mb-24">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="w-full flex justify-between items-end mb-16 md:mb-24"
+        >
           <div>
             <p className="text-xs font-bold tracking-[0.2em] text-[#ededed]/50 uppercase mb-2">
               Core Capabilities
@@ -38,7 +47,7 @@ export default function Capabilities() {
               What I <span className="font-bold text-white">Do</span>
             </h2>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bento Grid — alternating small + wide / wide + small */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
@@ -48,7 +57,11 @@ export default function Capabilities() {
             const isWide = idx === 1 || idx === 2;
             
             return (
-              <div 
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 key={idx}
                 className={`group flex flex-col relative overflow-hidden rounded-[2rem] p-6 md:p-8 transition-all duration-500 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_8px_40px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.1)] ${isWide ? 'md:col-span-2' : 'md:col-span-1'}`}
               >
@@ -71,7 +84,7 @@ export default function Capabilities() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
