@@ -25,7 +25,7 @@ export default function Projects() {
       category: "Web Music Player",
       image: "/projects/fossil-tune.png",
       github: "https://github.com/AEVILOP/Fossil-Tune",
-      live: "https://fossil-tune.netlify.app/"
+      live: "https://fossil-tune.vercel.app/"
     },
     {
       title: "Start Your Day",
