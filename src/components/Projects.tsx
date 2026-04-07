@@ -33,6 +33,13 @@ export default function Projects() {
       image: "/projects/task-app.png",
       github: "https://github.com/AEVILOP/task-app",
       live: "https://abstodoapp.netlify.app/"
+    },
+    {
+      title: "DevBlog.AI",
+      category: "AI Blog Generator", 
+      image: "/projects/devblog-ai.png",
+      github: "https://github.com/AEVILOP/Dev-AI-Blog",
+      live: "https://dev-ai-blog.vercel.app/"
     }
   ];
 
